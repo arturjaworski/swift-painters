@@ -13,7 +13,7 @@ class GameScene: SKScene {
     var paintWidth = 20.0
     var lastUpdated : CFTimeInterval = 0
     var paintbrushes : Paintbrush[] = []
-    var touchPoint: CGPoint?
+    var touchPoints: CGPoint?[] = [nil, nil]
     var touchCount = 0
     var paintNode: SKSpriteNode?
     
@@ -29,13 +29,14 @@ class GameScene: SKScene {
         }
     }
     
-    func addPaintbrush(at: CGPoint) {
+    func addPaintbrush(at: CGPoint, paintColor:UIColor) {
         let sprite = Paintbrush(imageNamed:"Spaceship")
         
         sprite.xScale = 0.1
         sprite.yScale = 0.1
         sprite.position = at
         sprite.changeAngle(M_PI/3)
+        sprite.paintColor = paintColor
         
         self.addChild(sprite)
         paintbrushes.insert(sprite, atIndex: 0)
@@ -43,33 +44,34 @@ class GameScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         refreshPaint()
-        addPaintbrush(CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame)))
+        addPaintbrush(CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame)), paintColor: UIColor.greenColor())
+        addPaintbrush(CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame)), paintColor: UIColor.redColor())
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         touchCount += touches.count
-        if touchPoint == nil {
-            touchPoint = touches.anyObject().locationInNode(self)
+        if touchPoints[0] == nil {
+            touchPoints[0] = touches.anyObject().locationInNode(self)
         }
     }
     
     override func touchesEnded(touches: NSSet!, withEvent event: UIEvent!) {
         touchCount -= touches.count
         if (touchCount == 0) {
-            touchPoint = nil
+            touchPoints[0] = nil
         }
     }
     
     override func touchesMoved(touches: NSSet!, withEvent event: UIEvent!) {
-        touchPoint = touches.anyObject().locationInNode(self)
+        touchPoints[0] = touches.anyObject().locationInNode(self)
     }
    
     override func update(currentTime: CFTimeInterval) {
         let dt = lastUpdated == 0 ? 0 : currentTime - lastUpdated
-        for paintbrush in paintbrushes {
+        for (idx, paintbrush) in enumerate(paintbrushes) {
             var oldPosition = paintbrush.position
-            paintbrush.move(Double(dt), touchPoint : self.touchPoint);
-            SKPaintHelper.sharedInstance.paintLine(oldPosition, toPoint: paintbrush.position, color: UIColor.greenColor(), width: CGFloat(paintWidth))
+            paintbrush.move(Double(dt), touchPoint : self.touchPoints[idx]);
+            SKPaintHelper.sharedInstance.paintLine(oldPosition, toPoint: paintbrush.position, color: paintbrush.paintColor, width: CGFloat(paintWidth))
         }
         lastUpdated = currentTime
         refreshPaint()

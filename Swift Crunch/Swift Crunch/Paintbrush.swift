@@ -13,6 +13,7 @@ class Paintbrush: SKSpriteNode {
     var velocity:Double = 150.0
     var angularVelocity:Double = M_PI*2
     var angle:Double = 0.0
+    var paintColor = UIColor.greenColor()
     
     func move(dt: Double, touchPoint:CGPoint?) {
         var a = -0.001982
