@@ -19,6 +19,6 @@ extension CGPoint: ComparableProtocol {
     }
     
     func countArcToObject(anotherObject: CGPoint) -> (Double) {
-        return 0.0
+        return Double(atan2f(self.x - anotherObject.x, self.y - anotherObject.y))
     }
 }
