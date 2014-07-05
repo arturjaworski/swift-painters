@@ -39,14 +39,13 @@ class SKPaintHelper {
         return SKTexture(image: self.image)
     }
     
-    func paintCircle(point: CGPoint, color: UIColor, width: CGFloat) {        
-        //CGContextScaleCTM(ctx, 1, -1);
-        //CGContextTranslateCTM(ctx, 0, -image.size.height);
-        
-        
+    func paintCircle(point: CGPoint, color: UIColor, width: CGFloat) {
         UIGraphicsBeginImageContext(self.image.size);
         //self.image.drawAtPoint(point)
         var context: CGContextRef = UIGraphicsGetCurrentContext();
+        
+        CGContextScaleCTM(context, 1, -1);
+        CGContextTranslateCTM(context, 0, -image.size.height);
         
         CGContextDrawImage(context, CGRectMake(0, 0, self.image.size.width, self.image.size.height), self.image.CGImage);
         
