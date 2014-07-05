@@ -18,6 +18,7 @@
 		36789310196825CC000E2F0E /* CGPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3678930F196825CC000E2F0E /* CGPointExtension.swift */; };
 		3678931919683413000E2F0E /* SKPaintHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3678931819683413000E2F0E /* SKPaintHelper.swift */; };
 		3678931D1968410C000E2F0E /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3678931C1968410C000E2F0E /* UIImageExtension.swift */; };
+		3678932119686046000E2F0E /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3678932019686046000E2F0E /* ArrayExtension.swift */; };
 		AC97EDE719682A2A00630D6D /* Paintbrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC97EDE619682A2A00630D6D /* Paintbrush.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		3678930F196825CC000E2F0E /* CGPointExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGPointExtension.swift; sourceTree = "<group>"; };
 		3678931819683413000E2F0E /* SKPaintHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKPaintHelper.swift; sourceTree = "<group>"; };
 		3678931C1968410C000E2F0E /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		3678932019686046000E2F0E /* ArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		AC97EDE619682A2A00630D6D /* Paintbrush.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Paintbrush.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,6 +136,7 @@
 			children = (
 				3678930F196825CC000E2F0E /* CGPointExtension.swift */,
 				3678931C1968410C000E2F0E /* UIImageExtension.swift */,
+				3678932019686046000E2F0E /* ArrayExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				367892ED196810A6000E2F0E /* GameScene.swift in Sources */,
 				3678931919683413000E2F0E /* SKPaintHelper.swift in Sources */,
 				367892EF196810A6000E2F0E /* GameViewController.swift in Sources */,
+				3678932119686046000E2F0E /* ArrayExtension.swift in Sources */,
 				36789310196825CC000E2F0E /* CGPointExtension.swift in Sources */,
 				AC97EDE719682A2A00630D6D /* Paintbrush.swift in Sources */,
 				367892E9196810A6000E2F0E /* AppDelegate.swift in Sources */,

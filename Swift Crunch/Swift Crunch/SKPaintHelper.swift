@@ -22,7 +22,7 @@ class SKPaintHelper {
     
     //var paintArray: Array<Array<UIColor>>
     init() {
-        self.image = UIImage.imageWithColor(UIColor.clearColor(), size: self.imageSize)
+        self.image = UIImage.imageWithColor(UIColor.redColor(), size: self.imageSize)
         
         /*self.paintArray = Array()
         for i in 0..(imageSize.width) {
@@ -36,13 +36,19 @@ class SKPaintHelper {
     }
     
     func texture() -> SKTexture {
-        return SKTexture(image: image)
+        return SKTexture(image: self.image)
     }
     
-    func paintCircle(point: CGPoint, color: UIColor, width: CGFloat) {
+    func paintCircle(point: CGPoint, color: UIColor, width: CGFloat) {        
+        //CGContextScaleCTM(ctx, 1, -1);
+        //CGContextTranslateCTM(ctx, 0, -image.size.height);
+        
+        
         UIGraphicsBeginImageContext(self.image.size);
-        self.image.drawAtPoint(point)
+        //self.image.drawAtPoint(point)
         var context: CGContextRef = UIGraphicsGetCurrentContext();
+        
+        CGContextDrawImage(context, CGRectMake(0, 0, self.image.size.width, self.image.size.height), self.image.CGImage);
         
         CGContextSetFillColorWithColor(context, color.CGColor)
         CGContextFillEllipseInRect(context, CGRectMake(point.x, point.y, width, width))

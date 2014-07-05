@@ -16,8 +16,30 @@ class GameScene: SKScene {
     var paintbrushes : Paintbrush[] = []
     var touchPoint: CGPoint?
     var touchCount = 0
+    var paintNode: SKSpriteNode?
+    
+    func refreshPaint() {
+        if self.paintNode != nil {
+            self.paintNode!.removeFromParent()
+        }
+        let paint = SKPaintHelper.sharedInstance.texture()
+        
+        var index = self.children.find { $0 as SKNode == self.paintNode }
+        
+        self.paintNode = SKSpriteNode(texture: paint);
+        self.paintNode!.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+        
+        if index {
+            self.insertChild(self.paintNode, atIndex: index!)
+        }
+        else {
+            self.addChild(self.paintNode)
+        }
+    }
     
     func addPaintbrush(at: CGPoint) {
+        refreshPaint()
+        
         let sprite = Paintbrush(imageNamed:"Spaceship")
         
         sprite.xScale = 0.2
@@ -55,7 +77,9 @@ class GameScene: SKScene {
         let dt = lastUpdated == 0 ? 0 : currentTime - lastUpdated
         for paintbrush in paintbrushes {
             paintbrush.move(Double(dt), touchPoint : self.touchPoint);
+            SKPaintHelper.sharedInstance.paintCircle(paintbrush.position, color: UIColor.greenColor(), width: 4.0)
         }
         lastUpdated = currentTime
+        refreshPaint()
     }
 }
