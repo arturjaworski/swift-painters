@@ -11,11 +11,16 @@ import SpriteKit
 
 class Paintbrush: SKSpriteNode {
     var velocity:Double = 30.0
+    var angularVelocity:Double = M_PI*5
     var angle:Double = 0.0
     
-    func move(dt: Double) {
+    func move(dt: Double, touchPoint:CGPoint?) {
         if (!checkBounds()) {
             return
+        }
+        if let point = touchPoint {
+            var ad = angularVelocity*dt
+            changeAngle(position.countArcToObject(point))
         }
         let len = velocity*dt
         var dx:Double = len*Double(sin(angle))

@@ -14,6 +14,7 @@ class GameScene: SKScene {
     var currentPoint: CGPoint = CGPoint(x: 160, y: 160)
     var lastUpdated : CFTimeInterval = 0
     var paintbrushes : Paintbrush[] = [];
+    var touchPoint: CGPoint?;
     
     func addPaintbrush(at: CGPoint) {
         let sprite = Paintbrush(imageNamed:"Spaceship")
@@ -32,8 +33,7 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        /* Called when a touch begins */
-
+        touchPoint = touches.anyObject().locationInNode(self)
     }
     
     override func touchesEnded(touches: NSSet!, withEvent event: UIEvent!) {
@@ -43,7 +43,7 @@ class GameScene: SKScene {
     override func update(currentTime: CFTimeInterval) {
         let dt = lastUpdated == 0 ? 0 : currentTime - lastUpdated
         for paintbrush in paintbrushes {
-            paintbrush.move(Double(dt));
+            paintbrush.move(Double(dt), touchPoint : self.touchPoint);
         }
         lastUpdated = currentTime
     }
