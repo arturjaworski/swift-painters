@@ -25,8 +25,8 @@ class Paintbrush: SKSpriteNode {
         let len = velocity*dt
         var dx:Double = len*Double(sin(angle))
         var dy:Double = len*Double(cos(angle))
-        position.x += Float(dx)
-        position.y += Float(dy)
+        position.x += CGFloat(dx)
+        position.y += CGFloat(dy)
     }
     
     func checkBounds() -> Bool {
@@ -37,7 +37,7 @@ class Paintbrush: SKSpriteNode {
     
     func changeAngle(angle: Double) {
         var da = self.angle - angle
-        var action = SKAction.rotateByAngle(Float(da), duration: 0)
+        var action = SKAction.rotateByAngle(CGFloat(da), duration: 0)
         runAction(action)
         self.angle = angle
     }
