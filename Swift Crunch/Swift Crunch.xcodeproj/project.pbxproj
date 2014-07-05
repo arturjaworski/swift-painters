@@ -14,6 +14,8 @@
 		367892F2196810A6000E2F0E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 367892F0196810A6000E2F0E /* Main.storyboard */; };
 		367892F4196810A7000E2F0E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 367892F3196810A7000E2F0E /* Images.xcassets */; };
 		36789300196810A7000E2F0E /* Swift_CrunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367892FF196810A7000E2F0E /* Swift_CrunchTests.swift */; };
+		3678930B19682085000E2F0E /* CGPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3678930A19682085000E2F0E /* CGPointExtension.swift */; };
+		3678930E196821C0000E2F0E /* ComparableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3678930D196821C0000E2F0E /* ComparableProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,8 @@
 		367892F9196810A7000E2F0E /* Swift CrunchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swift CrunchTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		367892FE196810A7000E2F0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		367892FF196810A7000E2F0E /* Swift_CrunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swift_CrunchTests.swift; sourceTree = "<group>"; };
+		3678930A19682085000E2F0E /* CGPointExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGPointExtension.swift; sourceTree = "<group>"; };
+		3678930D196821C0000E2F0E /* ComparableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComparableProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,8 @@
 		367892E5196810A6000E2F0E /* Swift Crunch */ = {
 			isa = PBXGroup;
 			children = (
+				3678930C19682185000E2F0E /* Protocols */,
+				3678930919682063000E2F0E /* Extensions */,
 				367892E8196810A6000E2F0E /* AppDelegate.swift */,
 				367892EA196810A6000E2F0E /* GameScene.sks */,
 				367892EC196810A6000E2F0E /* GameScene.swift */,
@@ -113,6 +119,22 @@
 				367892FE196810A7000E2F0E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3678930919682063000E2F0E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3678930A19682085000E2F0E /* CGPointExtension.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		3678930C19682185000E2F0E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				3678930D196821C0000E2F0E /* ComparableProtocol.swift */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,6 +240,8 @@
 				367892ED196810A6000E2F0E /* GameScene.swift in Sources */,
 				367892EF196810A6000E2F0E /* GameViewController.swift in Sources */,
 				367892E9196810A6000E2F0E /* AppDelegate.swift in Sources */,
+				3678930E196821C0000E2F0E /* ComparableProtocol.swift in Sources */,
+				3678930B19682085000E2F0E /* CGPointExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +439,7 @@
 				36789305196810A7000E2F0E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		36789306196810A7000E2F0E /* Build configuration list for PBXNativeTarget "Swift CrunchTests" */ = {
 			isa = XCConfigurationList;
@@ -423,6 +448,7 @@
 				36789308196810A7000E2F0E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

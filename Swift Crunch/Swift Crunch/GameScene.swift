@@ -48,6 +48,11 @@ class GameScene: SKScene {
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
         
-        
+        if desiredPoint.isEqualToObject(currentPoint) {
+            // we need to set new desiredPoint?
+        }
+        else {
+            // going to desiredPoint
+        }
     }
 }
