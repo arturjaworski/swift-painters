@@ -9,26 +9,30 @@
 import SpriteKit
 
 class GameScene: SKScene {
+    let timeBase = 100
     var desiredPoint: CGPoint = CGPoint(x: 320, y: 0)
     var currentPoint: CGPoint = CGPoint(x: 160, y: 160)
+    var lastUpdated : CFTimeInterval = 0
+    var paintbrushes : Paintbrush[] = [];
+    
+    func addPaintbrush(at: CGPoint) {
+        let sprite = Paintbrush(imageNamed:"Spaceship")
+        
+        sprite.xScale = 0.2
+        sprite.yScale = 0.2
+        sprite.position = at
+        
+        self.addChild(sprite)
+        paintbrushes.insert(sprite, atIndex: 0)
+    }
+    
+    override func didMoveToView(view: SKView) {
+        addPaintbrush(CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame)))
+    }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         /* Called when a touch begins */
-        for touch: AnyObject in touches {
-            let location = touch.locationInNode(self)
-            
-            let sprite = Paintbrush(imageNamed:"Spaceship")
-            
-            sprite.xScale = 0.2
-            sprite.yScale = 0.2
-            sprite.position = location
-            
-            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-            
-            sprite.runAction(SKAction.repeatActionForever(action))
-            
-            self.addChild(sprite)
-        }
+
     }
     
     override func touchesEnded(touches: NSSet!, withEvent event: UIEvent!) {
@@ -36,15 +40,10 @@ class GameScene: SKScene {
     }
    
     override func update(currentTime: CFTimeInterval) {
-        /* Called before each frame is rendered */
-    
-        var asd: Double = desiredPoint.countArcToObject(currentPoint)
-        
-        if desiredPoint.isEqualToObject(currentPoint) {
-            // we need to set new desiredPoint?
+        let dt = lastUpdated == 0 ? 0 : currentTime - lastUpdated
+        for paintbrush in paintbrushes {
+            paintbrush.move(Double(dt));
         }
-        else {
-            // going to desiredPoint
-        }
+        lastUpdated = currentTime
     }
 }
