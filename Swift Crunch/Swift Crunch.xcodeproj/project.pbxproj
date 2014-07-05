@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3675146319686D9D0092F087 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3675146219686D9D0092F087 /* Main-iPad.storyboard */; };
 		367892E9196810A6000E2F0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367892E8196810A6000E2F0E /* AppDelegate.swift */; };
 		367892EB196810A6000E2F0E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 367892EA196810A6000E2F0E /* GameScene.sks */; };
 		367892ED196810A6000E2F0E /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367892EC196810A6000E2F0E /* GameScene.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3675146219686D9D0092F087 /* Main-iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Main-iPad.storyboard"; path = "../Main-iPad.storyboard"; sourceTree = "<group>"; };
 		367892E3196810A6000E2F0E /* Swift Crunch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swift Crunch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		367892E7196810A6000E2F0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		367892E8196810A6000E2F0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +72,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3675146119686D520092F087 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
 		367892DA196810A6000E2F0E = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +100,7 @@
 		367892E5196810A6000E2F0E /* Swift Crunch */ = {
 			isa = PBXGroup;
 			children = (
+				3675146119686D520092F087 /* iPad */,
 				367893171968340A000E2F0E /* Helpers */,
 				3678930C19682185000E2F0E /* Protocols */,
 				3678930919682063000E2F0E /* Extensions */,
@@ -99,6 +109,7 @@
 				367892EC196810A6000E2F0E /* GameScene.swift */,
 				367892EE196810A6000E2F0E /* GameViewController.swift */,
 				367892F0196810A6000E2F0E /* Main.storyboard */,
+				3675146219686D9D0092F087 /* Main-iPad.storyboard */,
 				367892F3196810A7000E2F0E /* Images.xcassets */,
 				367892E6196810A6000E2F0E /* Supporting Files */,
 				AC97EDE619682A2A00630D6D /* Paintbrush.swift */,
@@ -240,6 +251,7 @@
 				367892F4196810A7000E2F0E /* Images.xcassets in Resources */,
 				367892EB196810A6000E2F0E /* GameScene.sks in Resources */,
 				367892F2196810A6000E2F0E /* Main.storyboard in Resources */,
+				3675146319686D9D0092F087 /* Main-iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,6 +403,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "36DDCC3E-CCDD-475B-A831-50FD5C19C423";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -405,6 +418,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "36DDCC3E-CCDD-475B-A831-50FD5C19C423";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};

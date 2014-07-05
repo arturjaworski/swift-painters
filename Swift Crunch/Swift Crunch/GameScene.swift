@@ -10,8 +10,6 @@ import SpriteKit
 
 class GameScene: SKScene {
     let timeBase = 100
-    var desiredPoint: CGPoint = CGPoint(x: 320, y: 0)
-    var currentPoint: CGPoint = CGPoint(x: 160, y: 160)
     var lastUpdated : CFTimeInterval = 0
     var paintbrushes : Paintbrush[] = []
     var touchPoint: CGPoint?

@@ -17,12 +17,12 @@ class SKPaintHelper {
         return Static.instance
     }
 
-    var imageSize: CGSize = CGSizeMake(320, 320)
+    var imageSize: CGSize = CGSizeMake(768, 502)
     var image: UIImage
     
     //var paintArray: Array<Array<UIColor>>
     init() {
-        self.image = UIImage.imageWithColor(UIColor.clearColor(), size: self.imageSize)
+        self.image = UIImage.imageWithColor(UIColor.redColor(), size: self.imageSize)
         
         /*self.paintArray = Array()
         for i in 0..(imageSize.width) {
@@ -40,12 +40,16 @@ class SKPaintHelper {
     }
     
     func paintCircle(point: CGPoint, color: UIColor, width: CGFloat) {
-        UIGraphicsBeginImageContext(self.image.size);
+        UIGraphicsBeginImageContext(self.image.size) // , false, 0.0
         //self.image.drawAtPoint(point)
         var context: CGContextRef = UIGraphicsGetCurrentContext();
         
+        let scale: CGFloat = UIScreen.mainScreen().scale;
+        
         CGContextScaleCTM(context, 1, -1);
         CGContextTranslateCTM(context, 0, -image.size.height);
+        
+        //CGContextScaleCTM(UIGraphicsGetCurrentContext(), scale, scale);
         
         CGContextDrawImage(context, CGRectMake(0, 0, self.image.size.width, self.image.size.height), self.image.CGImage);
         
