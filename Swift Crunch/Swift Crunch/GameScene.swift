@@ -28,23 +28,6 @@ class GameScene: SKScene {
         else {
             self.paintNode!.texture = paint
         }
-        return;
-        
-        var index = self.children.find { $0 as SKNode == self.paintNode }
-        
-        if(index) {
-            self.paintNode!.removeFromParent()
-        }
-        
-        self.paintNode = SKSpriteNode(texture: paint);
-        self.paintNode!.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
-        
-        if index {
-            self.insertChild(self.paintNode, atIndex: index!)
-        }
-        else {
-            
-        }
     }
     
     func addPaintbrush(at: CGPoint) {
