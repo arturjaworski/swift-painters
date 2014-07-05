@@ -20,8 +20,8 @@ class GameScene: SKScene {
     func addPaintbrush(at: CGPoint) {
         let sprite = Paintbrush(imageNamed:"Spaceship")
         
-        sprite.xScale = 0.2
-        sprite.yScale = 0.2
+        sprite.xScale = 0.1
+        sprite.yScale = 0.1
         sprite.position = at
         sprite.changeAngle(M_PI/3)
         

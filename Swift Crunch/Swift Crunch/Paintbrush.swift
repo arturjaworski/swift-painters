@@ -10,8 +10,8 @@ import UIKit
 import SpriteKit
 
 class Paintbrush: SKSpriteNode {
-    var velocity:Double = 30.0
-    var angularVelocity:Double = M_PI/4
+    var velocity:Double = 150.0
+    var angularVelocity:Double = M_PI*2
     var angle:Double = 0.0
     
     func move(dt: Double, touchPoint:CGPoint?) {
@@ -35,7 +35,7 @@ class Paintbrush: SKSpriteNode {
                 }
             }
 
-            var newAngle = angle + (rotateRight ? dt : -dt)
+            var newAngle = angle + (rotateRight ? ad : -ad)
             if newAngle < -M_PI {
                 newAngle = M_PI - (newAngle + M_PI)
             } else if newAngle > M_PI {
