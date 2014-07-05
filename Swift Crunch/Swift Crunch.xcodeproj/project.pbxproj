@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3675146319686D9D0092F087 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3675146219686D9D0092F087 /* Main-iPad.storyboard */; };
+		36751465196881CB0092F087 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36751464196881CB0092F087 /* DataHelper.swift */; };
 		367892E9196810A6000E2F0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367892E8196810A6000E2F0E /* AppDelegate.swift */; };
 		367892EB196810A6000E2F0E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 367892EA196810A6000E2F0E /* GameScene.sks */; };
 		367892ED196810A6000E2F0E /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367892EC196810A6000E2F0E /* GameScene.swift */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		3675146219686D9D0092F087 /* Main-iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Main-iPad.storyboard"; path = "../Main-iPad.storyboard"; sourceTree = "<group>"; };
+		36751464196881CB0092F087 /* DataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
 		367892E3196810A6000E2F0E /* Swift Crunch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swift Crunch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		367892E7196810A6000E2F0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		367892E8196810A6000E2F0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				3678931819683413000E2F0E /* SKPaintHelper.swift */,
+				36751464196881CB0092F087 /* DataHelper.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				367892E9196810A6000E2F0E /* AppDelegate.swift in Sources */,
 				3678930E196821C0000E2F0E /* ComparableProtocol.swift in Sources */,
 				3678931D1968410C000E2F0E /* UIImageExtension.swift in Sources */,
+				36751465196881CB0092F087 /* DataHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

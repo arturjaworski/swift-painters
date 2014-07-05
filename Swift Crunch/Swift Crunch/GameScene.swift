@@ -13,10 +13,14 @@ class GameScene: SKScene {
     var paintWidth = 20.0
     var lastUpdated : CFTimeInterval = 0
     var paintbrushes : Paintbrush[] = []
-    var touchPoint: CGPoint?
+    var touchPoints: CGPoint?[] = [nil, nil]
     var touchCount = 0
     var paintNode: SKSpriteNode?
-    var paintHelper: SKPaintHelper
+    var user: Int?
+    
+    func setUserId(userId: Int) {
+        self.user = userId
+    }
     
     func refreshPaint() {
         let paint = SKPaintHelper.sharedInstance.texture()
@@ -30,49 +34,60 @@ class GameScene: SKScene {
         }
     }
     
-    func addPaintbrush(at: CGPoint) {
+    func addPaintbrush(at: CGPoint, paintColor:UIColor, user: Int) {
         let sprite = Paintbrush(imageNamed:"Spaceship")
         
         sprite.xScale = 0.1
         sprite.yScale = 0.1
         sprite.position = at
         sprite.changeAngle(M_PI/3)
+        sprite.paintColor = paintColor
+        sprite.user = user;
         
         self.addChild(sprite)
         paintbrushes.insert(sprite, atIndex: 0)
     }
     
     override func didMoveToView(view: SKView) {
-        self.paintHelper = SKPaintHelper()
-        
         refreshPaint()
-        addPaintbrush(CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame)))
+        addPaintbrush(CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame)), paintColor: UIColor.greenColor(), user: 0)
+        addPaintbrush(CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame)), paintColor: UIColor.redColor(), user: 1)
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         touchCount += touches.count
-        if touchPoint == nil {
-            touchPoint = touches.anyObject().locationInNode(self)
+        if touchPoints[self.user!] == nil {
+            touchPoints[self.user!] = touches.anyObject().locationInNode(self)
         }
     }
     
     override func touchesEnded(touches: NSSet!, withEvent event: UIEvent!) {
         touchCount -= touches.count
         if (touchCount == 0) {
-            touchPoint = nil
+            touchPoints[self.user!] = nil
         }
     }
     
     override func touchesMoved(touches: NSSet!, withEvent event: UIEvent!) {
-        touchPoint = touches.anyObject().locationInNode(self)
+        touchPoints[self.user!] = touches.anyObject().locationInNode(self)
     }
    
     override func update(currentTime: CFTimeInterval) {
         let dt = lastUpdated == 0 ? 0 : currentTime - lastUpdated
-        for paintbrush in paintbrushes {
+        for (idx, paintbrush) in enumerate(paintbrushes) {
             var oldPosition = paintbrush.position
-            paintbrush.move(Double(dt), touchPoint : self.touchPoint);
-            SKPaintHelper.sharedInstance.paintLine(oldPosition, toPoint: paintbrush.position, color: UIColor.greenColor(), width: CGFloat(paintWidth))
+            
+            if self.user == paintbrush.user {
+                paintbrush.move(Double(dt), touchPoint : self.touchPoints[self.user!]);
+                DataHelper.sharedInstance.touchPoints[self.user!] = paintbrush.position
+                DataHelper.sharedInstance.angles[self.user!] = paintbrush.angle
+
+                SKPaintHelper.sharedInstance.paintLine(oldPosition, toPoint: paintbrush.position, color: paintbrush.paintColor, width: CGFloat(paintWidth))
+            }
+            else {
+                paintbrush.position = DataHelper.sharedInstance.touchPoints[paintbrush.user!]!
+                paintbrush.changeAngle(DataHelper.sharedInstance.angles[paintbrush.user!]!)
+            }
         }
         lastUpdated = currentTime
         refreshPaint()
