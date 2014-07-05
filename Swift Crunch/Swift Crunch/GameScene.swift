@@ -16,6 +16,7 @@ class GameScene: SKScene {
     var touchPoint: CGPoint?
     var touchCount = 0
     var paintNode: SKSpriteNode?
+    var paintHelper: SKPaintHelper
     
     func refreshPaint() {
         let paint = SKPaintHelper.sharedInstance.texture()
@@ -42,6 +43,8 @@ class GameScene: SKScene {
     }
     
     override func didMoveToView(view: SKView) {
+        self.paintHelper = SKPaintHelper()
+        
         refreshPaint()
         addPaintbrush(CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame)))
     }
