@@ -20,19 +20,8 @@ class SKPaintHelper {
     var imageSize: CGSize = CGSizeMake(768, 502)
     var image: UIImage
     
-    //var paintArray: Array<Array<UIColor>>
     init() {
-        self.image = UIImage.imageWithColor(UIColor.redColor(), size: self.imageSize)
-        
-        /*self.paintArray = Array()
-        for i in 0..(imageSize.width) {
-            var iArray: Array<UIColor> = Array()
-            for j in 0..(imageSize.height) {
-                var color: UIColor = UIColor(white: 0.0, alpha: 0.0)
-                iArray.insert(color, atIndex: Int(j))
-            }
-            self.paintArray.insert(iArray, atIndex: Int(i))
-        }*/
+        self.image = UIImage.imageWithColor(UIColor.clearColor(), size: self.imageSize)
     }
     
     func texture() -> SKTexture {
@@ -41,7 +30,7 @@ class SKPaintHelper {
     
     func paintCircle(point: CGPoint, color: UIColor, width: CGFloat) {
         UIGraphicsBeginImageContext(self.image.size) // , false, 0.0
-        //self.image.drawAtPoint(point)
+
         var context: CGContextRef = UIGraphicsGetCurrentContext();
         
         let scale: CGFloat = UIScreen.mainScreen().scale;
@@ -54,7 +43,31 @@ class SKPaintHelper {
         CGContextDrawImage(context, CGRectMake(0, 0, self.image.size.width, self.image.size.height), self.image.CGImage);
         
         CGContextSetFillColorWithColor(context, color.CGColor)
-        CGContextFillEllipseInRect(context, CGRectMake(point.x, point.y, width, width))
+        CGContextFillEllipseInRect(context, CGRectMake(point.x - width/2, point.y - width/2, width, width))
+        
+        var newImage : UIImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        self.image = newImage
+    }
+    
+    func paintLineDirect(fromPoint: CGPoint, toPoint: CGPoint, color: UIColor, width: CGFloat) {
+        UIGraphicsBeginImageContext(self.image.size) // , false, 0.0
+        
+        var context: CGContextRef = UIGraphicsGetCurrentContext();
+        
+        CGContextScaleCTM(context, 1, -1);
+        CGContextTranslateCTM(context, 0, -image.size.height);
+        
+        //CGContextScaleCTM(UIGraphicsGetCurrentContext(), scale, scale);
+        
+        CGContextDrawImage(context, CGRectMake(0, 0, self.image.size.width, self.image.size.height), self.image.CGImage);
+        
+        CGContextSetLineWidth(context, width);
+        CGContextSetStrokeColorWithColor(context, color.CGColor)
+        CGContextMoveToPoint(context, fromPoint.x, fromPoint.y);
+        CGContextAddLineToPoint(context, toPoint.x, toPoint.y);
+        CGContextStrokePath(context);
         
         var newImage : UIImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
@@ -63,37 +76,19 @@ class SKPaintHelper {
     }
     
     func paintLine(fromPoint: CGPoint, toPoint: CGPoint, color: UIColor, width: CGFloat) {
+        paintLineDirect(fromPoint, toPoint: toPoint, color: color, width: width)
+        //paintCircle(fromPoint, color: color, width: width)
+        return;
         
-    }
-    
-    /*func createImage() -> UIImage {
-        
-        
-        var imageRect: CGRect = CGRectMake(0, 0, imageSize.width, imageSize.height)
-        var sampleImage: UIImageView = UIImageView(frame: imageRect)
-        
-        UIGraphicsBeginImageContext(imageRect.size)
-        var context: CGContextRef = UIGraphicsGetCurrentContext();
-        
-        CGContextSaveGState(context);
-        CGContextDrawImage(context, imageRect, sampleImage.image.CGImage);
-        
-        for i in 0..(imageRect.width) {
-            for j in 0..(imageRect.height) {
-                var color: UIColor = paintArray[Int(i)][Int(j)]
-                var red: CGFloat = 0.0
-                var green: CGFloat = 0.0
-                var blue: CGFloat = 0.0
-                var alpha: CGFloat = 0.0
-                
-                color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-                CGContextSetRGBFillColor(context, red, green, blue, alpha)
-                CGContextFillRect(context, CGRectMake(i, j, 1, 1))
-            }
+        var xdiff:Double = Double(toPoint.x - fromPoint.x)
+        var ydiff:Double = Double(toPoint.y - fromPoint.y)
+        var diff = max(abs(xdiff), abs(ydiff))
+        var point:CGPoint = fromPoint
+        paintCircle(point, color: color, width: width)
+        for(var i:Double = 0.0; i < diff; i += 1.0) {
+            point.x = CGFloat(Double(fromPoint.x) + xdiff/i)
+            point.y = CGFloat(Double(fromPoint.y) + ydiff/i)
+            paintCircle(point, color: color, width: width)
         }
-
-        CGContextRestoreGState(context);
-        var img: UIImage = UIGraphicsGetImageFromCurrentImageContext();
-        return img
-    }*/
+    }
 }

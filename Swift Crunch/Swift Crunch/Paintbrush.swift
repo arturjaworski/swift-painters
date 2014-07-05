@@ -22,19 +22,8 @@ class Paintbrush: SKSpriteNode {
         if let point = touchPoint {
             var ad:Double = angularVelocity*dt
             var desiredAngle = position.countArcToObject(point)
-            var rotateRight:Bool
-            if (angle < 0 && desiredAngle < 0) || (angle > 0 && desiredAngle > 0) {
-                rotateRight = desiredAngle > angle
-            } else {
-                var absAngle = abs(angle)
-                var absDesiredAngle = abs(desiredAngle)
-                if (angle > 0) {
-                    rotateRight = absDesiredAngle + absAngle > M_PI
-                } else {
-                    rotateRight = absDesiredAngle + absAngle < M_PI
-                }
-            }
-
+            var rotateRight:Bool = shouldRotateRight(angle, desiredAngle: desiredAngle)
+            
             var newAngle = angle + (rotateRight ? ad : -ad)
             if newAngle < -M_PI {
                 newAngle = M_PI - (newAngle + M_PI)
@@ -42,6 +31,9 @@ class Paintbrush: SKSpriteNode {
                 newAngle = -M_PI + (newAngle - M_PI)
             }
             changeAngle(newAngle)
+            if shouldRotateRight(angle, desiredAngle: desiredAngle) != rotateRight {
+                changeAngle(desiredAngle)
+            }
         }
         let len = velocity*dt
         var dx:Double = len*Double(sin(angle))
@@ -52,6 +44,22 @@ class Paintbrush: SKSpriteNode {
         if (!checkBounds()) {
             position = oldPos
         }
+    }
+    
+    func shouldRotateRight(angle:Double, desiredAngle:Double) -> Bool {
+        var rotateRight:Bool
+        if (angle < 0 && desiredAngle < 0) || (angle > 0 && desiredAngle > 0) {
+            rotateRight = desiredAngle > angle
+        } else {
+            var absAngle = abs(angle)
+            var absDesiredAngle = abs(desiredAngle)
+            if (angle > 0) {
+                rotateRight = absDesiredAngle + absAngle > M_PI
+            } else {
+                rotateRight = absDesiredAngle + absAngle < M_PI
+            }
+        }
+        return rotateRight
     }
     
     func checkBounds() -> Bool {

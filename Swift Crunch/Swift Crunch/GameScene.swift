@@ -10,6 +10,7 @@ import SpriteKit
 
 class GameScene: SKScene {
     let timeBase = 100
+    var paintWidth = 20.0
     var lastUpdated : CFTimeInterval = 0
     var paintbrushes : Paintbrush[] = []
     var touchPoint: CGPoint?
@@ -66,8 +67,9 @@ class GameScene: SKScene {
     override func update(currentTime: CFTimeInterval) {
         let dt = lastUpdated == 0 ? 0 : currentTime - lastUpdated
         for paintbrush in paintbrushes {
+            var oldPosition = paintbrush.position
             paintbrush.move(Double(dt), touchPoint : self.touchPoint);
-            SKPaintHelper.sharedInstance.paintCircle(paintbrush.position, color: UIColor.greenColor(), width: 4.0)
+            SKPaintHelper.sharedInstance.paintLine(oldPosition, toPoint: paintbrush.position, color: UIColor.greenColor(), width: CGFloat(paintWidth))
         }
         lastUpdated = currentTime
         refreshPaint()
