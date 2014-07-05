@@ -69,8 +69,9 @@ class GameScene: SKScene {
     override func update(currentTime: CFTimeInterval) {
         let dt = lastUpdated == 0 ? 0 : currentTime - lastUpdated
         for paintbrush in paintbrushes {
+            var oldPosition = paintbrush.position
             paintbrush.move(Double(dt), touchPoint : self.touchPoint);
-            SKPaintHelper.sharedInstance.paintCircle(paintbrush.position, color: UIColor.greenColor(), width: CGFloat(paintWidth))
+            SKPaintHelper.sharedInstance.paintLine(oldPosition, toPoint: paintbrush.position, color: UIColor.greenColor(), width: CGFloat(paintWidth))
         }
         lastUpdated = currentTime
         refreshPaint()
