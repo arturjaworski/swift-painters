@@ -13,8 +13,9 @@ class GameScene: SKScene {
     var desiredPoint: CGPoint = CGPoint(x: 320, y: 0)
     var currentPoint: CGPoint = CGPoint(x: 160, y: 160)
     var lastUpdated : CFTimeInterval = 0
-    var paintbrushes : Paintbrush[] = [];
-    var touchPoint: CGPoint?;
+    var paintbrushes : Paintbrush[] = []
+    var touchPoint: CGPoint?
+    var touchCount = 0
     
     func addPaintbrush(at: CGPoint) {
         let sprite = Paintbrush(imageNamed:"Spaceship")
@@ -33,11 +34,21 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        touchPoint = touches.anyObject().locationInNode(self)
+        touchCount += touches.count
+        if touchPoint == nil {
+            touchPoint = touches.anyObject().locationInNode(self)
+        }
     }
     
     override func touchesEnded(touches: NSSet!, withEvent event: UIEvent!) {
-        
+        touchCount -= touches.count
+        if (touchCount == 0) {
+            touchPoint = nil
+        }
+    }
+    
+    override func touchesMoved(touches: NSSet!, withEvent event: UIEvent!) {
+        touchPoint = touches.anyObject().locationInNode(self)
     }
    
     override func update(currentTime: CFTimeInterval) {
