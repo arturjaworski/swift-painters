@@ -22,7 +22,7 @@ class SKPaintHelper {
     
     //var paintArray: Array<Array<UIColor>>
     init() {
-        self.image = UIImage.imageWithColor(UIColor.redColor(), size: self.imageSize)
+        self.image = UIImage.imageWithColor(UIColor.clearColor(), size: self.imageSize)
         
         /*self.paintArray = Array()
         for i in 0..(imageSize.width) {
