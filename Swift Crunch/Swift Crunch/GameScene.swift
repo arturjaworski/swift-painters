@@ -21,6 +21,7 @@ class GameScene: SKScene {
         sprite.xScale = 0.2
         sprite.yScale = 0.2
         sprite.position = at
+        sprite.changeAngle(M_PI/3)
         
         self.addChild(sprite)
         paintbrushes.insert(sprite, atIndex: 0)

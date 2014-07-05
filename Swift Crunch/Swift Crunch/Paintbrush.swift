@@ -10,19 +10,30 @@ import UIKit
 import SpriteKit
 
 class Paintbrush: SKSpriteNode {
-    var velocity = 30.0
+    var velocity:Double = 30.0
+    var angle:Double = 0.0
+    
     func move(dt: Double) {
         if (!checkBounds()) {
             return
         }
-        var len = Float(velocity)*Float(dt)
-        position.x += len
+        let len = velocity*dt
+        var dx:Double = len*Double(sin(angle))
+        var dy:Double = len*Double(cos(angle))
+        position.x += Float(dx)
+        position.y += Float(dy)
     }
     
     func checkBounds() -> Bool {
         let bottomLeft = CGPointZero;
         let topRight = CGPointMake(self.scene.size.width, self.scene.size.height);
-        return (position.x > bottomLeft.x && position.y > bottomLeft.y
-            && position.x < topRight.x && position.y < topRight.y);
+        return (position.x > bottomLeft.x && position.y > bottomLeft.y && position.x < topRight.x && position.y < topRight.y)
+    }
+    
+    func changeAngle(angle: Double) {
+        var da = self.angle - angle
+        var action = SKAction.rotateByAngle(Float(da), duration: 0)
+        runAction(action)
+        self.angle = angle
     }
 }
