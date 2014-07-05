@@ -11,22 +11,26 @@ import SpriteKit
 
 class Paintbrush: SKSpriteNode {
     var velocity:Double = 30.0
-    var angularVelocity:Double = M_PI*5
+    var angularVelocity:Double = M_PI/4
     var angle:Double = 0.0
     
     func move(dt: Double, touchPoint:CGPoint?) {
-        if (!checkBounds()) {
-            return
-        }
+        var oldPos = position
+        var oldAngle = angle
         if let point = touchPoint {
-            var ad = angularVelocity*dt
-            changeAngle(position.countArcToObject(point))
+            var ad:Double = angularVelocity*dt
+            var rotateRight:Bool = Double(position.countArcToObject(point) - angle) > 0
+            changeAngle(angle + (rotateRight ? dt : -dt))
         }
         let len = velocity*dt
         var dx:Double = len*Double(sin(angle))
         var dy:Double = len*Double(cos(angle))
         position.x += Float(dx)
         position.y += Float(dy)
+        
+        if (!checkBounds()) {
+            position = oldPos
+        }
     }
     
     func checkBounds() -> Bool {
