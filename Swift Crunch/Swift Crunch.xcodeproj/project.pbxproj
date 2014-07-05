@@ -16,6 +16,8 @@
 		36789300196810A7000E2F0E /* Swift_CrunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367892FF196810A7000E2F0E /* Swift_CrunchTests.swift */; };
 		3678930E196821C0000E2F0E /* ComparableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3678930D196821C0000E2F0E /* ComparableProtocol.swift */; };
 		36789310196825CC000E2F0E /* CGPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3678930F196825CC000E2F0E /* CGPointExtension.swift */; };
+		3678931919683413000E2F0E /* SKPaintHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3678931819683413000E2F0E /* SKPaintHelper.swift */; };
+		3678931D1968410C000E2F0E /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3678931C1968410C000E2F0E /* UIImageExtension.swift */; };
 		AC97EDE719682A2A00630D6D /* Paintbrush.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC97EDE619682A2A00630D6D /* Paintbrush.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +45,8 @@
 		367892FF196810A7000E2F0E /* Swift_CrunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swift_CrunchTests.swift; sourceTree = "<group>"; };
 		3678930D196821C0000E2F0E /* ComparableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComparableProtocol.swift; sourceTree = "<group>"; };
 		3678930F196825CC000E2F0E /* CGPointExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGPointExtension.swift; sourceTree = "<group>"; };
+		3678931819683413000E2F0E /* SKPaintHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKPaintHelper.swift; sourceTree = "<group>"; };
+		3678931C1968410C000E2F0E /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		AC97EDE619682A2A00630D6D /* Paintbrush.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Paintbrush.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,6 +89,7 @@
 		367892E5196810A6000E2F0E /* Swift Crunch */ = {
 			isa = PBXGroup;
 			children = (
+				367893171968340A000E2F0E /* Helpers */,
 				3678930C19682185000E2F0E /* Protocols */,
 				3678930919682063000E2F0E /* Extensions */,
 				367892E8196810A6000E2F0E /* AppDelegate.swift */,
@@ -128,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				3678930F196825CC000E2F0E /* CGPointExtension.swift */,
+				3678931C1968410C000E2F0E /* UIImageExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -138,6 +144,14 @@
 				3678930D196821C0000E2F0E /* ComparableProtocol.swift */,
 			);
 			name = Protocols;
+			sourceTree = "<group>";
+		};
+		367893171968340A000E2F0E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3678931819683413000E2F0E /* SKPaintHelper.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,11 +255,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				367892ED196810A6000E2F0E /* GameScene.swift in Sources */,
+				3678931919683413000E2F0E /* SKPaintHelper.swift in Sources */,
 				367892EF196810A6000E2F0E /* GameViewController.swift in Sources */,
 				36789310196825CC000E2F0E /* CGPointExtension.swift in Sources */,
 				AC97EDE719682A2A00630D6D /* Paintbrush.swift in Sources */,
 				367892E9196810A6000E2F0E /* AppDelegate.swift in Sources */,
 				3678930E196821C0000E2F0E /* ComparableProtocol.swift in Sources */,
+				3678931D1968410C000E2F0E /* UIImageExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
