@@ -15,12 +15,33 @@ class Paintbrush: SKSpriteNode {
     var angle:Double = 0.0
     
     func move(dt: Double, touchPoint:CGPoint?) {
+        var a = -0.001982
+        var b = -2.077895
         var oldPos = position
         var oldAngle = angle
         if let point = touchPoint {
             var ad:Double = angularVelocity*dt
-            var rotateRight:Bool = Double(position.countArcToObject(point) - angle) > 0
-            changeAngle(angle + (rotateRight ? dt : -dt))
+            var desiredAngle = position.countArcToObject(point)
+            var rotateRight:Bool
+            if (angle < 0 && desiredAngle < 0) || (angle > 0 && desiredAngle > 0) {
+                rotateRight = desiredAngle > angle
+            } else {
+                var absAngle = abs(angle)
+                var absDesiredAngle = abs(desiredAngle)
+                if (angle > 0) {
+                    rotateRight = absDesiredAngle + absAngle > M_PI
+                } else {
+                    rotateRight = absDesiredAngle + absAngle < M_PI
+                }
+            }
+
+            var newAngle = angle + (rotateRight ? dt : -dt)
+            if newAngle < -M_PI {
+                newAngle = M_PI - (newAngle + M_PI)
+            } else if newAngle > M_PI {
+                newAngle = -M_PI + (newAngle - M_PI)
+            }
+            changeAngle(newAngle)
         }
         let len = velocity*dt
         var dx:Double = len*Double(sin(angle))
