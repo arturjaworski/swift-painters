@@ -47,6 +47,8 @@ class GameScene: SKScene {
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+    
+        var asd: Double = desiredPoint.countArcToObject(currentPoint)
         
         if desiredPoint.isEqualToObject(currentPoint) {
             // we need to set new desiredPoint?

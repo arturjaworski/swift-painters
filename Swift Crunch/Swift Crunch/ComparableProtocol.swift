@@ -10,5 +10,5 @@ import Foundation
 import SpriteKit
 
 protocol ComparableProtocol {
-    func isEqualToObject(anotherObject: CGPoint) -> (Bool)
+    func isEqualToObject(anotherObject: Self) -> (Bool)
 }

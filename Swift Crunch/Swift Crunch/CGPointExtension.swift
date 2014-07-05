@@ -1,5 +1,5 @@
 //
-//  CGPoint+SwiftCrunch.swift
+//  CGPointExtension.swift
 //  Swift Crunch
 //
 //  Created by Artur Jaworski on 05.07.2014.
@@ -16,5 +16,9 @@ extension CGPoint: ComparableProtocol {
         }
         
         return false
+    }
+    
+    func countArcToObject(anotherObject: CGPoint) -> (Double) {
+        return 0.0
     }
 }
