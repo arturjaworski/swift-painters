@@ -78,18 +78,6 @@ class SKPaintHelper {
     
     func paintLine(fromPoint: CGPoint, toPoint: CGPoint, color: UIColor, width: CGFloat) {
         paintLineDirect(fromPoint, toPoint: toPoint, color: color, width: width)
-        //paintCircle(fromPoint, color: color, width: width)
-        return;
-        
-        var xdiff:Double = Double(toPoint.x - fromPoint.x)
-        var ydiff:Double = Double(toPoint.y - fromPoint.y)
-        var diff = max(abs(xdiff), abs(ydiff))
-        var point:CGPoint = fromPoint
-        paintCircle(point, color: color, width: width)
-        for(var i:Double = 0.0; i < diff; i += 1.0) {
-            point.x = CGFloat(Double(fromPoint.x) + xdiff/i)
-            point.y = CGFloat(Double(fromPoint.y) + ydiff/i)
-            paintCircle(point, color: color, width: width)
-        }
+        paintCircle(fromPoint, color: color, width: width)
     }
 }

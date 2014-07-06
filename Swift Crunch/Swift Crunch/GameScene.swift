@@ -45,6 +45,7 @@ class GameScene: SKScene {
         sprite.changeAngle(M_PI*Double(user))
         sprite.position.x += CGFloat(sin(sprite.angle) * 20.0)
         sprite.position.y += CGFloat(cos(sprite.angle) * 20.0)
+        sprite.zPosition = 10.0
         sprite.paintColor = paintColor
         sprite.user = user;
         
