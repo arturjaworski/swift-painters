@@ -43,7 +43,7 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.firstPlayerText.transform = CGAffineTransformMakeRotation( M_PI );
+        self.firstPlayerText.transform = CGAffineTransformMakeRotation( CGFloat(M_PI) );
         
         if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
             // Configure the view.
@@ -117,6 +117,10 @@ class GameViewController: UIViewController {
         
         self.firstPlayerSceneMask.hidden = false;
         self.secondPlayerSceneMask.hidden = false;
+        
+        var (p2score, p1score) = SKPaintHelper.sharedInstance.countWinner()
+
+        println("asd")
     }
     
     func startGame() {
