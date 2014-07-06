@@ -37,7 +37,7 @@ class GameViewController: UIViewController {
     var timer: NSTimer?
     var roundCounter: Int = 0
     
-    var roundTime: NSTimeInterval = 7.0
+    var roundTime: NSTimeInterval = 1.0
     var maxRounds: Int = 10
     
     override func viewDidLoad() {
@@ -117,6 +117,10 @@ class GameViewController: UIViewController {
         
         self.firstPlayerSceneMask.hidden = false;
         self.secondPlayerSceneMask.hidden = false;
+        
+        var (p2score, p1score) = SKPaintHelper.sharedInstance.countWinner()
+
+        println("asd")
     }
     
     func startGame() {

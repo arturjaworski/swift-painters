@@ -16,7 +16,7 @@ class Paintbrush: SKSpriteNode {
     var velocity:Double = 150.0
     var angularVelocity:Double = M_PI*2
     var angle:Double = 0.0
-    var paintColor = UIColor.greenColor()
+    var paintColor = UIColor.blackColor()
     var user: Int?
     let collisionDuration:Double = 5.0
     var collidedUntil:Double = 0.0

@@ -80,4 +80,33 @@ class SKPaintHelper {
         paintLineDirect(fromPoint, toPoint: toPoint, color: color, width: width)
         paintCircle(toPoint, color: color, width: width)
     }
+    
+    func countWinner() -> (Float, Float) {
+        var pixelCount = [0, 0]
+        
+        var red: Float
+        var green: Float
+        var blue: Float
+        var alpha: Float
+        
+        for x in 0..(self.imageSize.width) {
+            for y in 0..(self.imageSize.height) {
+                (red, green, blue, alpha) = self.image.getPixelColorAtLocation(CGPointMake(x, y))
+                if !(alpha > 0) {
+                    continue;
+                }
+                
+                if green > 0 {
+                    pixelCount[0]++
+                }
+                else if blue > 0 {
+                    pixelCount[1]++
+                }
+            }
+        }
+        
+        var allPixelsCount: Float = Float(self.imageSize.width)*Float(self.imageSize.height);
+        
+        return (Float(pixelCount[0])/allPixelsCount, Float(pixelCount[1])/allPixelsCount)
+    }
 }
