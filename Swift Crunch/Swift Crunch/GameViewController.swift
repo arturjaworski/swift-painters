@@ -120,6 +120,15 @@ class GameViewController: UIViewController {
         
         var (p2score, p1score) = SKPaintHelper.sharedInstance.countWinner()
 
+        if(p1score > p2score) {
+            self.firstPlayerText.text = "You lose! " + String(NSString(format: "%.2f", p1score*100)) + "% vs " + String(NSString(format: "%.2f", p2score*100)) + "%"
+            self.secondPlayerText.text = "You win! " + String(NSString(format: "%.2f", p1score*100)) + "% vs " + String(NSString(format: "%.2f", p2score*100)) + "%"
+        }
+        else {
+            self.firstPlayerText.text = "You win! " + String(NSString(format: "%.2f", p1score*100)) + "% vs " + String(NSString(format: "%.2f", p2score*100)) + "%"
+            self.secondPlayerText.text = "You lose! " + String(NSString(format: "%.2f", p1score*100)) + "% vs " + String(NSString(format: "%.2f", p2score*100)) + "%"
+        }
+            
         println("asd")
     }
     

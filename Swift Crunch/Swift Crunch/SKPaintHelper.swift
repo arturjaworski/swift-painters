@@ -84,14 +84,21 @@ class SKPaintHelper {
     func countWinner() -> (Float, Float) {
         var pixelCount = [0, 0]
         
-        var red: Float
-        var green: Float
-        var blue: Float
-        var alpha: Float
+        let pixelData: CFDataRef = CGDataProviderCopyData(CGImageGetDataProvider(self.image.CGImage));
+        let data = CFDataGetBytePtr(pixelData)
         
         for x in 0..(self.imageSize.width) {
             for y in 0..(self.imageSize.height) {
-                (red, green, blue, alpha) = self.image.getPixelColorAtLocation(CGPointMake(x, y))
+                
+                var pointY = y
+                var pointX = x
+                
+                var pixelInfo = ((self.image.size.width * pointY) + pointX) * 4;
+                var red: UInt8 = data[Int(pixelInfo)];
+                var green: UInt8 = data[Int(pixelInfo) + 1];
+                var blue: UInt8 = data[Int(pixelInfo) + 2];
+                var alpha: UInt8 = data[Int(pixelInfo) + 3];
+                
                 if !(alpha > 0) {
                     continue;
                 }
@@ -104,6 +111,8 @@ class SKPaintHelper {
                 }
             }
         }
+        
+        //CFRelease(pixelData);
         
         var allPixelsCount: Float = Float(self.imageSize.width)*Float(self.imageSize.height);
         

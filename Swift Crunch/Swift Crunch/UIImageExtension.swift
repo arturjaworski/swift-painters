@@ -59,10 +59,13 @@ extension UIImage {
     }
     
     func getPixelColorAtLocation(point:CGPoint) -> (Float, Float, Float, Float) {
+        let pointY = point.y
+        let pointX = point.x
+        
         let pixelData: CFDataRef = CGDataProviderCopyData(CGImageGetDataProvider(self.CGImage));
         let data = CFDataGetBytePtr(pixelData)
         
-        let pixelInfo = ((self.size.width * point.y) + point.x) * 4;
+        let pixelInfo = ((self.size.width * pointY) + pointX) * 4;
         let red: UInt8 = data[Int(pixelInfo)];
         let green: UInt8 = data[Int(pixelInfo) + 1];
         let blue: UInt8 = data[Int(pixelInfo) + 2];
