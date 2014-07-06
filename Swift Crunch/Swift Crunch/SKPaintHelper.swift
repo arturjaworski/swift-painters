@@ -55,6 +55,7 @@ class SKPaintHelper {
         UIGraphicsBeginImageContext(self.image.size) // , false, 0.0
         
         var context: CGContextRef = UIGraphicsGetCurrentContext();
+        CGContextSetAllowsAntialiasing(context, false)
         
         CGContextScaleCTM(context, 1, -1);
         CGContextTranslateCTM(context, 0, -image.size.height);
