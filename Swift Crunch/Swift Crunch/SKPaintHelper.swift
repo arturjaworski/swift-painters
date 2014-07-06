@@ -78,7 +78,7 @@ class SKPaintHelper {
     
     func paintLine(fromPoint: CGPoint, toPoint: CGPoint, color: UIColor, width: CGFloat) {
         paintLineDirect(fromPoint, toPoint: toPoint, color: color, width: width)
-        paintCircle(fromPoint, color: color, width: width)
+        paintCircle(toPoint, color: color, width: width)
     }
     
     func countWinner() -> (Float, Float) {

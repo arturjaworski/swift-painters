@@ -37,14 +37,14 @@ class GameScene: SKScene {
     }
     
     func addPaintbrush(paintColor:UIColor, user: Int) {
-        let sprite = Paintbrush(imageNamed:"Spaceship")
+        let sprite = Paintbrush(imageNamed:"paint-roller-icon")
         
         sprite.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
-        sprite.xScale = 0.1
-        sprite.yScale = 0.1
+        sprite.xScale = 0.18
+        sprite.yScale = 0.18
         sprite.changeAngle(M_PI*Double(user))
-        sprite.position.x += CGFloat(sin(sprite.angle) * 20.0)
-        sprite.position.y += CGFloat(cos(sprite.angle) * 20.0)
+        sprite.position.x += CGFloat(sin(sprite.angle) * 30.0)
+        sprite.position.y += CGFloat(cos(sprite.angle) * 30.0)
         sprite.zPosition = 10.0
         sprite.paintColor = paintColor
         sprite.user = user;
