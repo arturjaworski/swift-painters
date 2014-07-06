@@ -34,13 +34,15 @@ class GameScene: SKScene {
         }
     }
     
-    func addPaintbrush(at: CGPoint, paintColor:UIColor, user: Int) {
+    func addPaintbrush(paintColor:UIColor, user: Int) {
         let sprite = Paintbrush(imageNamed:"Spaceship")
         
+        sprite.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
         sprite.xScale = 0.1
         sprite.yScale = 0.1
-        sprite.position = at
-        sprite.changeAngle(M_PI/3)
+        sprite.changeAngle(M_PI*Double(user))
+        sprite.position.x += CGFloat(sin(sprite.angle) * 20.0)
+        sprite.position.y += CGFloat(cos(sprite.angle) * 20.0)
         sprite.paintColor = paintColor
         sprite.user = user;
         
@@ -50,8 +52,8 @@ class GameScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         refreshPaint()
-        addPaintbrush(CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame)), paintColor: UIColor.greenColor(), user: 0)
-        addPaintbrush(CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame)), paintColor: UIColor.redColor(), user: 1)
+        addPaintbrush(UIColor.greenColor(), user: 0)
+        addPaintbrush(UIColor.redColor(), user: 1)
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
@@ -71,8 +73,22 @@ class GameScene: SKScene {
     override func touchesMoved(touches: NSSet!, withEvent event: UIEvent!) {
         touchPoints[self.user!] = touches.anyObject().locationInNode(self)
     }
+    
+    func checkCollisions() {
+        for paintbrush1 in paintbrushes {
+            for paintbrush2 in paintbrushes {
+                if (paintbrush1 == paintbrush2) {
+                    continue
+                }
+                if (paintbrush1.position.distanceTo(paintbrush2.position) < Double(paintbrush1.size.height)) {
+                    paintbrush1.collisionWithPaintbrush(paintbrush2)
+                }
+            }
+        }
+    }
    
     override func update(currentTime: CFTimeInterval) {
+        checkCollisions()
         let dt = lastUpdated == 0 ? 0 : currentTime - lastUpdated
         for (idx, paintbrush) in enumerate(paintbrushes) {
             var oldPosition = paintbrush.position
