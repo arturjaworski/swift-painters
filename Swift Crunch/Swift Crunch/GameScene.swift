@@ -18,6 +18,8 @@ class GameScene: SKScene {
     var paintNode: SKSpriteNode?
     var user: Int?
     
+    var enabled: Bool = true
+    
     func setUserId(userId: Int) {
         self.user = userId
     }
@@ -89,6 +91,10 @@ class GameScene: SKScene {
    
     override func update(currentTime: CFTimeInterval) {
         checkCollisions()
+        if !enabled {
+            return;
+        }
+        
         let dt = lastUpdated == 0 ? 0 : currentTime - lastUpdated
         for (idx, paintbrush) in enumerate(paintbrushes) {
             var oldPosition = paintbrush.position

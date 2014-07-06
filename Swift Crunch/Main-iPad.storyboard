@@ -14,21 +14,49 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="Bic-xp-ysd" customClass="SKView">
-                                <rect key="frame" x="0.0" y="20" width="768" height="502"/>
+                                <rect key="frame" x="0.0" y="20" width="768" height="462"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.80000001192092896" green="1" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" id="Ft3-xV-RWz" customClass="SKView">
-                                <rect key="frame" x="0.0" y="522" width="768" height="502"/>
+                                <rect key="frame" x="0.0" y="562" width="768" height="462"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.40000000596046448" green="0.80000001192092896" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <view hidden="YES" alpha="0.5" contentMode="scaleToFill" id="ROO-Mt-WEu">
+                                <rect key="frame" x="0.0" y="20" width="768" height="462"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view hidden="YES" alpha="0.5" contentMode="scaleToFill" id="6nJ-yf-u5k">
+                                <rect key="frame" x="0.0" y="562" width="768" height="462"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XYQ-PO-Tku">
+                                <rect key="frame" x="0.0" y="482" width="384" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9TP-xM-tak">
+                                <rect key="frame" x="384" y="482" width="384" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="firstPlayerSceneMask" destination="ROO-Mt-WEu" id="PKp-DL-tNJ"/>
                         <outlet property="firstPlayerSceneView" destination="Bic-xp-ysd" id="fv2-ke-S59"/>
+                        <outlet property="firstPlayerText" destination="XYQ-PO-Tku" id="HzE-wN-YX1"/>
+                        <outlet property="secondPlayerSceneMask" destination="6nJ-yf-u5k" id="j91-WC-3oc"/>
                         <outlet property="secondPlayerSceneView" destination="Ft3-xV-RWz" id="hYq-pc-zaw"/>
+                        <outlet property="secondPlayerText" destination="9TP-xM-tak" id="Xzt-ek-QDl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Alf-qo-Pj1" userLabel="First Responder" sceneMemberID="firstResponder"/>
