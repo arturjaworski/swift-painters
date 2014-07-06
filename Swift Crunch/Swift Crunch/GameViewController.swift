@@ -37,7 +37,7 @@ class GameViewController: UIViewController {
     var timer: NSTimer?
     var roundCounter: Int = 0
     
-    var roundTime: NSTimeInterval = 7.0
+    var roundTime: NSTimeInterval = 4.0
     var maxRounds: Int = 10
     
     override func viewDidLoad() {
