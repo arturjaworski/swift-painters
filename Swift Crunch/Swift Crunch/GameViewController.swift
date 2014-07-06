@@ -28,9 +28,23 @@ class GameViewController: UIViewController {
     @IBOutlet var firstPlayerSceneView: SKView
     @IBOutlet var secondPlayerSceneView: SKView
     
+    @IBOutlet var firstPlayerSceneMask: UIView
+    @IBOutlet var secondPlayerSceneMask: UIView
+    
+    @IBOutlet var firstPlayerText: UILabel
+    @IBOutlet var secondPlayerText: UILabel
+    
+    var timer: NSTimer?
+    var roundCounter: Int = 0
+    
+    var roundTime: NSTimeInterval = 1.0
+    var maxRounds: Int = 10
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.firstPlayerText.transform = CGAffineTransformMakeRotation( M_PI );
+        
         if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
             // Configure the view.
             let skView = self.firstPlayerSceneView as SKView
@@ -62,8 +76,16 @@ class GameViewController: UIViewController {
             
             skView.presentScene(scene)
         }
+        
+        self.firstPlayerText.text = "Please wait"
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        startGame()
+    }
+    
     override func shouldAutorotate() -> Bool {
         return false
     }
@@ -77,4 +99,42 @@ class GameViewController: UIViewController {
         // Release any cached data, images, etc that aren't in use.
     }
     
+    func endRound() {
+        self.roundCounter++
+        setRoundsCountLabels()
+        if(self.roundCounter == self.maxRounds) {
+            endGame()
+        }
+    }
+    
+    func endGame() {
+        self.timer!.invalidate()
+        
+        var scene: GameScene = self.firstPlayerSceneView.scene as GameScene!;
+        scene.enabled = false;
+        scene = self.secondPlayerSceneView.scene as GameScene!
+        scene.enabled = false;
+        
+        self.firstPlayerSceneMask.hidden = false;
+        self.secondPlayerSceneMask.hidden = false;
+    }
+    
+    func startGame() {
+        self.firstPlayerSceneMask.hidden = true;
+        self.secondPlayerSceneMask.hidden = true;
+        
+        setRoundsCountLabels()
+        
+        var scene: GameScene = self.firstPlayerSceneView.scene as GameScene!;
+        scene.enabled = true;
+        scene = self.secondPlayerSceneView.scene as GameScene!
+        scene.enabled = true;
+        
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(self.roundTime, target: self, selector: Selector("endRound"), userInfo: nil, repeats: true)
+    }
+    
+    func setRoundsCountLabels() {
+        self.firstPlayerText.text = "\(self.maxRounds-self.roundCounter) rounds left"
+        self.secondPlayerText.text = self.firstPlayerText.text
+    }
 }

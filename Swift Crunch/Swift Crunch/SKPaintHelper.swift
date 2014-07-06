@@ -17,7 +17,7 @@ class SKPaintHelper {
         return Static.instance
     }
 
-    var imageSize: CGSize = CGSizeMake(768, 502)
+    var imageSize: CGSize = CGSizeMake(768, 462)
     var image: UIImage
     
     init() {
